@@ -1,0 +1,223 @@
+.footer {
+  bottom: 0px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: #f0eee9;
+  margin: 0px 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Nunito";
+}
+.main {
+  display: flex;
+}
+.box {
+  flex-basis: 50%;
+  padding: 11px 20px;
+}
+.box h2 {
+  display: block;
+  font-size: 2.3em;
+  font-weight: bold;
+  font-family: "Nunito";
+}
+.content {
+  margin: 20px 0 0 0;
+  position: relative;
+  font-weight: 100;
+}
+.content:before {
+  position: absolute;
+  content: "";
+  top: -10px;
+  height: 2px;
+  width: 100%;
+  background: #fff;
+}
+.content p {
+  font-size: 17px;
+  font-weight: lighter;
+}
+.content:after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 15%;
+  background: #fff;
+  top: -10px;
+}
+.content p {
+  text-align: justify;
+}
+.social {
+  margin: 20px 0 0 0;
+}
+.social a {
+  padding: 0 8px;
+}
+.social a span {
+  height: 40px;
+  width: 40px;
+  background: #fff;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: 0.3s;
+  color: #656565;
+}
+.social a span:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+.center {
+  padding: 10px 20px;
+}
+.center h2{
+  font-size: 2rem;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+.placee {
+  display: flex;
+  align-items: center;
+}
+.place {
+  margin: 20px 0 0 0;
+  position: relative;
+}
+.place:before {
+  position: absolute;
+  content: "";
+  top: -10px;
+  height: 2px;
+  width: 100%;
+  background: #fff;
+}
+.place:after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 15%;
+  background: #fff;
+  top: -10px;
+}
+.place span {
+  font-size: 1.4375rem;
+  background-color: white;
+  height: 45px;
+  width: 45px;
+  line-height: 45px;
+  text-align: center;
+  border-radius: 50%;
+  transition: 0.3s;
+  cursor: pointer;
+  color: #656565;
+}
+.place span:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+.text {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  padding-left: 10px;
+}
+.phone {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+}
+.texte {
+  font-size: 1.0625rem;
+  margin-bottom: 2px;
+  margin-top: 10px;
+}
+.form {
+  display: block;
+}
+.contente {
+  margin: 20px 0 0 0;
+  position: relative;
+}
+.contente:before {
+  position: absolute;
+  content: "";
+  top: -10px;
+  height: 2px;
+  width: 100%;
+  background: #fff;
+}
+.contente:after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 15%;
+  background: #fff;
+  top: -10px;
+}
+.right {
+  padding: 10px 25px;
+}
+.right h2{
+    font-weight: bold;
+    font-family: "Nunito";
+}
+.right form input {
+  width: 100%;
+  font-size: 1.0625rem;
+  background:  rgba(0, 0, 0, 0.4);
+  padding-left: 10px;
+  border: 2px solid white;
+  border-radius: 10px;
+   color: #fff;
+}
+.right form textarea {
+  width: 100%;
+  height: 80px;
+  font-size: 1.0625rem;
+  background: rgba(0, 0, 0, 0.4);
+  padding-left: 10px;
+  border: 2px solid white;
+  border-radius: 10px;
+  color: #fff;
+}
+.right form input:focus,
+.right form textarea:focus {
+  outline-color: lightgray;
+}
+.right form input {
+  height: 35px;
+}
+.right form button {
+  margin-top: 10px;
+}
+.right form button {
+  color: #fff;
+  height: 40px;
+  width: 103.5%;
+  border: none;
+  outline: none;
+  background: rgba(0, 0, 0, 0.4);
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 10px;
+}
+.right form button:hover {
+  background: rgba(216, 210, 210, 0.5);
+}
+.centere {
+  padding: 5px;
+  font-size: 0.9375rem;
+  background: #fff;
+}
+.centere span {
+  color: #656565;
+}
+.centere a {
+  color: green;
+  text-decoration: none;
+}
+.centere a:hover {
+  text-decoration: underline;
+}

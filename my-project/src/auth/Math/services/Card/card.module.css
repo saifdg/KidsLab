@@ -1,0 +1,55 @@
+.courses{
+  box-sizing: border-box;
+}
+.course {
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	display: flex;
+	max-width: 100%;
+	margin: 20px;
+	overflow: hidden;
+	width: 700px;
+  font-family:"Nunito";
+}
+.course h6 {
+	opacity: 0.6;
+	margin: 0;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+  font-weight: bold;
+}
+.course h2 {
+	letter-spacing: 1px;
+	margin: 10px 0;
+}
+.coursep {
+	background-color: #2A265F;
+	color: #fff;
+	padding: 30px;
+	max-width: 250px;
+}
+
+.coursep Link {
+	color: #fff;
+	display: inline-block;
+	font-size: 12px;
+	opacity: 0.6;
+	margin-top: 30px;
+text-decoration: none;
+}
+.info {
+	padding: 30px;
+	position: relative;
+width: 120px;
+}
+
+.progress{
+	top: 30px;
+	right: 30px;
+	text-align: right;
+	width: 320px;
+}
+.progress h2{
+  font-size: 17px;
+}

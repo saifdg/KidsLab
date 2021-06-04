@@ -1,0 +1,18 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "title": "1ère année primaire",
+      "image": "http://localhost:9000/math.jpg",
+      "description": "Compter dans l'ordre croissant et décroissant, ordonner des nombres, additionner et soustraire, reconnaître des figures planes et des solides et autres sujets.",
+      "nbComp": 60
+    },
+    {
+      "id": 2,
+      "title": "2eme année primaire",
+      "image": "http://localhost:9000/math.jpg",
+      "description": "Compter jusqu'à 100, décomposer et ordonner des nombres, additionner et soustraire, nommer des figures planes et des solides, mesurer des longueurs et autres sujets.",
+      "nbComp": 91
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+    "mongoURI": "mongodb+srv://ala1:ala1@cluster0.8wp4y.mongodb.net/test?authSource=admin&replicaSet=atlas-vvtjer-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true",
+    "jwtSecret": "mysecrettoken",
+    "githubClientId": "819b9aff7145cbaa3ab3",
+    "githubSecret": "a5c4676aa744297bd5ff05fedab09f4ac1cf3790"
+}
