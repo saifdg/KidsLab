@@ -18,11 +18,7 @@ const categorieSchema = new Schema({
     imageUrl:{
         type:String,
         default:"IMG_20210506_120550"
-    },
-    nbComp:{
-        type:Number,
-        default:null
-    },
+    }
     
 });
 

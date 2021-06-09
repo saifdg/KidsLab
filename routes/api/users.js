@@ -188,7 +188,7 @@ router.post('/forgotpassword', async (req, res, next) => {
 // @route Get api/user
 // @desc get all user
 // @access Private
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const user = await User.find().sort({ date: -1 });
         res.json(user);

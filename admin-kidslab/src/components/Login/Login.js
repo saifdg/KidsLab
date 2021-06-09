@@ -35,7 +35,7 @@ const Login = ({ login, auth: { isAuthenticated } }) => {
         login({ email, password })
     }
     if (isAuthenticated) {
-        return <Redirect to='/Dashboard-Admin' />
+        return <Redirect to='/app' />
     }
     return (
         <Grid style={{ marginTop: '100px' }}>

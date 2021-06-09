@@ -10,15 +10,15 @@ import axios from "axios";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import Button from '@material-ui/core/Button';
-import{useSelector,useDispatch} from "react-redux";
-import {succes , fail ,monthly,yearly}from "../../../action/action";
+import { useSelector, useDispatch } from "react-redux";
+import { succes, fail, monthly, yearly } from "../../../action/action";
 
 const CheckoutForm = ({ success }) => {
   const stripe = useStripe();
   const elements = useElements();
-  
-   
-  
+
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,17 +35,17 @@ const CheckoutForm = ({ success }) => {
     }
   };
 
-    
-  
 
- 
+
+
+
 
   const [amountt, setAmount] = React.useState("0");
   const handleChange = (event, newAmount) => {
     setAmount(newAmount);
   };
   const amount = Number(amountt);
- console.log(amount);
+  console.log(amount);
   const dispatch = useDispatch();
   return (
     <form style={{ margin: "50px auto", height: "220px", width: "80%" }}>
@@ -58,14 +58,14 @@ const CheckoutForm = ({ success }) => {
         style={{ margin: "30px 100px" }}
         required
       >
-        <ToggleButton value="995" onClick={()=>dispatch(monthly())}>
+        <ToggleButton value="995" onClick={() => dispatch(monthly())}>
           <p fontSize="medium" style={{ fontSize: "24px", fontWeight: "bold" }}>
-            Mensuelle : 27,34dt
+            Mensuel : 27,34dt
           </p>
         </ToggleButton>
-        <ToggleButton value="7900" onClick={()=>dispatch(yearly())}>
+        <ToggleButton value="7900" onClick={() => dispatch(yearly())}>
           <p fontSize="medium" style={{ fontSize: "24px", fontWeight: "bold" }}>
-            Annuelle : 217,09dt
+            Annuel : 217,09dt
           </p>
         </ToggleButton>
       </ToggleButtonGroup>
@@ -86,28 +86,28 @@ const CheckoutForm = ({ success }) => {
           },
         }}
       />
-      {amountt > 0?
+      {amountt > 0 ?
         <Button
-        variant="contained"
-        color="primary"
+          variant="contained"
+          color="primary"
           onClick={handleSubmit}
-        disabled={!stripe}
-        style={{ margin: "30px 310px" }}
-      >
-        Je m'abonne
+          disabled={!stripe}
+          style={{ margin: "30px 310px" }}
+        >
+          Je m'abonne
       </Button>
-      :
+        :
         <Button
-        variant="contained"
-        color="primary"
+          variant="contained"
+          color="primary"
           onClick={handleSubmit}
-        disabled
-        style={{ margin: "30px 310px" }}
-      >
-        Je m'abonne
+          disabled
+          style={{ margin: "30px 310px" }}
+        >
+          Je m'abonne
       </Button>
       }
-      
+
     </form>
   );
 };

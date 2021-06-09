@@ -21,13 +21,12 @@ router.post('/',[auth, [
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { name, description,imageUrl,nbCompt ,user} = req.body;
+        const { name, description,imageUrl} = req.body;
         try{
             const categorie=new Categorie({
             name
             ,description,
             imageUrl,
-            nbCompt,
             user:req.user.id
             
         })

@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch ,Redirect} from "react-router-dom";
 import Login from './components/Login/Login';
 import { Provider } from "react-redux";
 import { store, persistor } from './components/Store/Store'
@@ -24,8 +24,12 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <Router>
           <div>
-            <Route exact path='/' component={Login} />
-            <Route exact path='/Dashboard-Admin' component={Dashboard} />
+            <Switch>
+            <Route exact path="/" render={() => <Redirect to="/login" />} />
+            <Route exact path='/login' component={Login} />
+            <Route path='/app' component={Dashboard} />
+            </Switch>
+          
           </div>
         </Router>
       </PersistGate>
@@ -34,3 +38,5 @@ function App() {
 }
 
 export default App;
+
+////////////////////////////////////////////////////////////////////////////////

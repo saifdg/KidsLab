@@ -45,7 +45,7 @@ function Registre({ setAlert, register, isAuthenticated }) {
   }
 
   const sleep = (time) => new Promise((acc) => setTimeout(acc, time));
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
     showPassword: false,
     showCPassword: false,
   });
@@ -55,10 +55,6 @@ function Registre({ setAlert, register, isAuthenticated }) {
   const handleClickShowCPassword = () => {
     setValues({ ...values, showCPassword: !values.showCPassword });
   };
-
-  const state = {
-    gender: "",
-  }
   const subscription = useSelector((state) => state.Payments.subscribtion);
 
 

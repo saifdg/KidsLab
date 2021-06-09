@@ -32,7 +32,7 @@ router.post('/:id', auth, async (req, res) => {
 // @access Private
 router.get('/', auth, async (req, res) => {
     try {
-        const jeux2 = await Categorie.find().sort({ date: -1 });
+        const jeux2 = await Jeux.find().sort({ date: -1 });
         res.json(jeux2);
     } catch (error) {
         console.error(err.message);
