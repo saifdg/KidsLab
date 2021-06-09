@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {REGISTER_SUCCESS,REGISTER_FAIL,USER_LOADED,AUTH_ERROR,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT} from './type';
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './type';
 import { setAlert } from './alert'
 import setAuthToken from '../utlis/setAuthToken';
 
@@ -50,19 +50,20 @@ export const register = ({ firstName, lastName, email, gender, password, file, s
         const errors = err.response.data.errors;
         if (errors) {
             errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
-        }}
+        }
+    }
 }
 
 //login user
 
-export const login = ({ email, password}) => async dispatch => {
+export const login = ({ email, password }) => async dispatch => {
     const config = {
         Headers: {
             'Content-Type': 'application/json'
         }
     }
 
-    console.log({ email, password})
+    console.log({ email, password })
     const body = { email, password };
 
 
@@ -78,7 +79,7 @@ export const login = ({ email, password}) => async dispatch => {
     } catch (err) {
         const errors = err.response.data.errors;
         if (errors) {
-            errors.forEach(error => dispatch(setAlert(error.msg,'danger')));
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
         }
         dispatch({
             type: LOGIN_FAIL
@@ -97,7 +98,7 @@ export const logout = () => dispatch => {
 
 // update user
 
-export const UpdateUser = ({ firstName, lastName, file ,id}) => async dispatch => {
+export const UpdateUser = ({ firstName, lastName, file, id }) => async dispatch => {
     const config = {
         Headers: {
             'Content-Type': 'application/json'
@@ -110,7 +111,7 @@ export const UpdateUser = ({ firstName, lastName, file ,id}) => async dispatch =
     try {
         const res = await axios.put(`/api/users/updatedetails/${id}`, body, config);
         console.log(id)
-     
+
 
     } catch (err) {
         const errors = err.response.data.errors;
@@ -124,7 +125,7 @@ export const UpdateUser = ({ firstName, lastName, file ,id}) => async dispatch =
 //update Password
 
 
-export const UpdatePassword = ({ newPassword, currentPassword }) => async dispatch => {  
+export const UpdatePassword = ({ newPassword, currentPassword }) => async dispatch => {
     const config = {
         Headers: {
             'Content-Type': 'application/json'
@@ -151,7 +152,7 @@ export const UpdatePassword = ({ newPassword, currentPassword }) => async dispat
 //Create categorie
 
 
-export const CreateCategorie = ({ name, description,imageUrl }) => async dispatch => {  
+export const CreateCategorie = ({ name, description, imageUrl }) => async dispatch => {
     const config = {
         Headers: {
             'Content-Type': 'application/json'
@@ -159,7 +160,7 @@ export const CreateCategorie = ({ name, description,imageUrl }) => async dispatc
     }
 
 
-    const body = { name, description,imageUrl };
+    const body = { name, description, imageUrl };
 
 
     try {
@@ -179,7 +180,7 @@ export const CreateCategorie = ({ name, description,imageUrl }) => async dispatc
 //Create Compétance
 
 
-export const CreateCompetence = ({ name, categorie}) => async dispatch => {  
+export const CreateCompetence = ({ name, categorie }) => async dispatch => {
     const config = {
         Headers: {
             'Content-Type': 'application/json'
@@ -207,7 +208,7 @@ export const CreateCompetence = ({ name, categorie}) => async dispatch => {
 //Create Jeux1
 
 
-export const CreateJeux1 = ({ question, reponse,image,competence}) => async dispatch => {  
+export const CreateJeux1 = ({ question, reponse, image, competence }) => async dispatch => {
     const config = {
         Headers: {
             'Content-Type': 'application/json'
@@ -215,11 +216,37 @@ export const CreateJeux1 = ({ question, reponse,image,competence}) => async disp
     }
 
 
-    const body = { question, reponse,image };
-    console.log({competence})
+    const body = { question, reponse, image };
+    console.log({ competence })
 
     try {
         const res = await axios.post(`/api/jeux1/${competence}`, body, config);
+
+        dispatch(loadUser());
+
+    } catch (err) {
+        const errors = err.response.data.errors;
+        if (errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+        }
+    }
+}
+
+//Create Jeux2
+
+
+export const CreateJeux2 = ({ question, reponse, image, competence }) => async dispatch => {
+    const config = {
+        Headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+
+    const body = { question, reponse, image };
+    console.log({ competence })
+    try {
+        const res = await axios.post(`/api/jeux2/${competence}`, body, config);
 
         dispatch(loadUser());
 

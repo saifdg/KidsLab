@@ -3,28 +3,37 @@ const router = express.Router();
 const auth = require('../../middleware/auth')
 const Jeux = require('../../models/Jeux2');
 const competance = require('../../models/Competance')
-
+const { check, validationResult } = require('express-validator');
 
 
 
 // @route Get api/jeux/:id
 // @desc Get jeux by id
 // @access Private
-router.post('/:id', auth, async (req, res) => {
+router.post('/:id', [auth, [
+    check('question', 'Le question de categorie est obligatoire').not().isEmpty(),
+    check('reponse', 'Le reponse est obligatoire').not().isEmpty()
+]
+],
+    async (req, res) => {
 
-    try {
-        const { type, image1, image2, image3, reponse, question } = req.body
-        const jeux2 = new Jeux({ type, image1, image2, image3, reponse, question })
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        try {
+            const { type, image, reponse, question } = req.body
+            const jeux2 = new Jeux({ type, image, reponse, question })
+            jeux2.user = req.user.id
+            jeux2.competance = req.params.id
+            const jeux = await jeux2.save();
+            res.json(jeux)
+        } catch (error) {
+            console.log(error.message)
+        }
 
-        jeux2.user = req.user.id
-        jeux2.competance = req.params.id
-        const jeux = await jeux2.save();
-        res.json({ jeux })
-    } catch (error) {
-        res.json({ msg: error.message })
-    }
+    })
 
-})
 
 
 // @route Get api/jeux2

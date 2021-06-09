@@ -21,7 +21,7 @@ import { setAlert } from '../../action/alert'
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { CreateJeux1 } from '../../action/auth'
+import { CreateJeux2 } from '../../action/auth'
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const NewJeux2 = ({ setAlert, CreateJeux1 }) => {
+const NewJeux2 = ({ setAlert, CreateJeux2 }) => {
     const classes = useStyles();
     const refer = useRef(null);
     const refers = useRef(null);
@@ -98,27 +98,26 @@ const NewJeux2 = ({ setAlert, CreateJeux1 }) => {
         reader.readAsDataURL(e.target.files[0]);
     }
     const handleSubmit = async (values, props) => {
-        if (img !== '') {
-            values.image = img
+        if (img !== [] || correct != '') {
+            values.image = img;
+            values.reponse = correct;
         }
         const { question, categorie, competence, reponse, image } = values;
         await sleep(3000);
-        console.log(image)
-        console.log(correct)
-        /* if (img == '') {
-             setAlert('Image est obligatoire', 'danger')
-         } else {
-            CreateJeux1({ question, reponse, image, competence })
-         }
-         props.setSubmitting(false)
-         props.resetForm()*/
+        if (img == []) {
+            setAlert('les images sont obligatoire', 'danger')
+        } else {
+            CreateJeux2({ question, reponse, image, competence })
+            console.log({question, categorie, competence, reponse, image })
+        }
+        /*props.setSubmitting(false)
+        props.resetForm()*/
     }
-    let val = null
     const [categories, setCategories] = useState([])
     const [competence, setCompetence] = useState([])
     const [idcat, setIdcat] = useState('')
     const [idcomp, setIdcomp] = useState('')
-    const [correct, setCorrect]=useState('')
+    const [correct, setCorrect] = useState('')
     const fetch = async () => {
         const res = await axios('/api/categorie')
         setCategories(res.data)
@@ -218,14 +217,14 @@ const NewJeux2 = ({ setAlert, CreateJeux1 }) => {
 
                                                 />
                                             </Box>
-                                          
+
                                             <Box my={1} ml={3} mt={3} style={{ display: 'flex' }}>
                                                 <Box>
                                                     <label>Téléchargez l'image Correct :{"   "}</label>
                                                 </Box>
                                                 <Box mt={5} ml={-22} style={{ display: 'flex' }}>
                                                     <input
-                                                        name="image"
+                                                        name="reponse"
                                                         type="file"
                                                         multiple={true}
                                                         onChange={(e) => handleImageChangeCorrect(e)}
@@ -238,7 +237,7 @@ const NewJeux2 = ({ setAlert, CreateJeux1 }) => {
                                                         onClick={handleClickCorrect}
                                                         style={{ height: '40px', marginTop: "20px" }}
                                                     >
-                                                        Choisir image 
+                                                        Choisir image
                                                 </Button>
                                                     <div className="img-holder" style={{ margin: 'auto', width: '160px', height: '157px', borderRadius: '5px', marginTop: '-50px', marginLeft: "38px", background: img ? `url("${correct}") no-repeat center/cover` : "#fff" }}>
                                                     </div>
@@ -267,7 +266,7 @@ const NewJeux2 = ({ setAlert, CreateJeux1 }) => {
                                                     >
                                                         Ajouter des images
                                                 </Button>
-                                                <Button variant="contained"  color="secondary" onClick={()=>setImg([])} style={{marginTop:'18px',marginLeft:'15px'}}>Réinitialiser</Button>
+                                                    <Button variant="contained" color="secondary" onClick={() => setImg([])} style={{ marginTop: '18px', marginLeft: '15px' }}>Réinitialiser</Button>
 
 
                                                 </Box>
@@ -320,8 +319,8 @@ const NewJeux2 = ({ setAlert, CreateJeux1 }) => {
 }
 NewJeux2.propTypes = {
     setAlert: PropTypes.func.isRequired,
-    CreateJeux1: PropTypes.func.isRequired,
+    CreateJeux2 : PropTypes.func.isRequired,
 
 }
 
-export default connect(null, { setAlert, CreateJeux1 })(NewJeux2)
+export default connect(null, { setAlert, CreateJeux2 })(NewJeux2)

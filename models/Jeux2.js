@@ -1,46 +1,39 @@
 const mongoose = require('mongoose');
-const crypto=require('crypto');
-const bcrypt=require('bcryptjs');
+const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 
 
 const jeux1Schema = new mongoose.Schema({
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'users'
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users'
     },
-    competance:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'competance'
+    competance: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'competance'
     },
     type: {
         type: String,
+        required: true,
+        default: 'algo2'
+    },
+    image: {
+        type: Array,
         required: true
     },
-    image1: {
-        type: String,
-        required: true
-    },
-    image2: {
-        type: String,
-        required: true
-    },
-    image3: {
-        type: String,
-        required: true
-    },
-    
+
     reponse: {
         type: String,
         required: true,
     },
-    question:{
-        type:String,
+    question: {
+        type: String,
         required: true
 
     },
-    date:{
-        type:Date,
-        default:Date.now
+    date: {
+        type: Date,
+        default: Date.now
     }
 });
 
