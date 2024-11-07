@@ -21,14 +21,19 @@ app.use(cookieParser())
 //body parser
 //app.use(express.urlencoded({ extended: false }))
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.json({limit: "50mb"}));
-app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
 
 
 app.get('/', (req, res) => res.send('API RUNNING'));
 
 //File uploading
 app.use(fileupload());
+
+
+// Upload Endpoint
+
+
 
 //Set static folder
 app.use('/public', express.static(path.join(__dirname)));
@@ -43,6 +48,7 @@ app.use('/api/competance', require('./routes/api/competances'));
 app.use('/api/forgotpassword', require('./routes/api/forgotpassword'));
 app.use('/api/jeux1', require('./routes/api/jeux1'));
 app.use('/api/jeux2', require('./routes/api/jeux2'));
+app.use('/api/jeux3', require('./routes/api/jeux3'));
 app.use('/api/admin', require('./routes/api/admin'));
 
 

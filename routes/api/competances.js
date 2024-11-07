@@ -32,7 +32,7 @@ router.post('/:id',[auth, [
 
 
          const competance= await Competance.create(req.body)
-        res.json(competance);
+        res.json({msg:'Competence crée avec success'});
     
 
 } catch (err) {
@@ -115,7 +115,13 @@ router.delete('/:id',auth,async(req,res)=>{
 // @route Update api/competance/:id
 // @desc update competance
 // @access Private
-router.put('/:id',auth,async(req,res)=>{
+router.put('/:id', [
+    check('name', 'Le nom de competence est obligatoire').not().isEmpty(),
+],auth,async(req,res)=>{
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
     try {
         const competance=await Competance.findById(req.params.id);
         

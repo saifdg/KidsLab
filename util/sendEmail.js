@@ -1,60 +1,43 @@
-const { google } = require("googleapis");
-const {OAuth2}=google.auth;
-const OAUTH_PLAYGROUND="https://developers.google.com/oauthplayground"
 const nodemailer = require("nodemailer");
 
 
-const {
-  MAILING_SERVICE_CLIENT_ID,
-  MAILING_SERVICE_CLIENT_SECRET,
-  MAILING_SERVICE_REFRESH_TOKEN,
-  SENDER_EMAIL_ADDRESS
-}=process.env
+const sendEmail = (email, url, txt, txt2) => {
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'lab.kids05@gmail.com',
+      pass: '97516320a'
+    }
+  });
 
-const oauth2Client=new OAuth2(
-  MAILING_SERVICE_CLIENT_ID,
-  MAILING_SERVICE_CLIENT_SECRET,
-  MAILING_SERVICE_REFRESH_TOKEN,
-  OAUTH_PLAYGROUND
-)
 
-const sendEmail=(to,url)=>{
-  oauth2Client.setCredentials({
-    refresh_token:MAILING_SERVICE_REFRESH_TOKEN
-  })
-
-  const accessToken=oauth2Client.getAccessToken()
-
-  const smtpTransport=nodemailer.createTransport({
-    service:'gmail',
-    auth:{
-      type:'OAuth2',
-      user:SENDER_EMAIL_ADDRESS,
-      clientId:MAILING_SERVICE_CLIENT_ID,
-      clientSecret:MAILING_SERVICE_CLIENT_SECRET,
-      refreshToken:MAILING_SERVICE_REFRESH_TOKEN,
-      accessToken
-      
-    },
-    tls:{
-      rejectUnauthorized:false
-    },
+  // Step 3
+  let mailOptions = {
+    from: 'lab.kids05@gmail.com', // TODO: email sender
+    to: email,   // TODO: email receiver
+    subject: 'Welcome to KidsLab',
+    text: '',
+    html: `<div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
+    <h2 style="text-align: center; text-transform: uppercase;color: teal;">Welcome to KidsLab.</h2>
+    <p>${txt2}</p>
     
-  })
+    <a href=${url} style="background: crimson; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;">${txt}</a>
+  
+    <p>Si le bouton ne fonctionne pas pour une raison quelconque, vous pouvez également cliquer sur le lien ci-dessous:</p>
+  
+    <div><a href='${url}'>${url}</a></div>
+    </div> `
+  };
 
-  const mailOptions={
-    from:SENDER_EMAIL_ADDRESS,
-    to:to,
-    subject:"Welcome",
-    html:`<a>${url}</a>`
-  }
- 
+  // Step 4
+  transporter.sendMail(mailOptions, function (err, data) {
+    if (err) {
+      return log('Error occurs', err);
+    }
+    return log('Email sent!!!');
+  });
 
-  smtpTransport.sendMail(mailOptions,(err,infor)=>{
-    if(err) return err;
-    return infor
-  })
 }
-
-
-module.exports=sendEmail;
+module.exports = sendEmail;

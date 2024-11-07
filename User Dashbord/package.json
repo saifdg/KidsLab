@@ -1,0 +1,72 @@
+{
+  "name": "my-project",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.58",
+    "@stripe/react-stripe-js": "^1.4.0",
+    "@stripe/stripe-js": "^1.13.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "aos": "^2.3.4",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.6.0",
+    "concurrently": "^6.0.2",
+    "formik": "^2.2.6",
+    "formik-material-ui": "^3.0.1",
+    "material-react-toastify": "^1.0.1",
+    "material-ui-search-bar": "^1.0.0",
+    "moment": "^2.29.1",
+    "react": "^16.13.1",
+    "react-beautiful-dnd": "^13.1.0",
+    "react-bootstrap": "^1.5.2",
+    "react-dom": "^16.13.1",
+    "react-email-validator": "^1.0.2",
+    "react-google-login": "^5.2.2",
+    "react-moment": "^1.1.1",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "react-score-indicator": "^2.2.1",
+    "react-scripts": "3.4.3",
+    "react-scroll": "^1.8.1",
+    "react-speech": "^1.0.1",
+    "react-speech-recognition": "^3.8.2",
+    "react-stripe-checkout": "^2.6.3",
+    "react-toastify": "^7.0.4",
+    "redux": "^4.1.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.2.3",
+    "sweetalert2-react": "^0.8.3",
+    "typescript": "^4.2.4",
+    "uuid": "^8.3.2",
+    "yup": "^0.32.9"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:5000",
+  "secure": false
+}

@@ -29,6 +29,11 @@ const jeux1Schema = new mongoose.Schema({
         type: String,
         required: true
 
+    }, 
+    categorie: {
+        type: String,
+        required: true
+
     },
     date: {
         type: Date,

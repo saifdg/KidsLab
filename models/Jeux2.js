@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 
 
+
 const jeux1Schema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -17,16 +18,15 @@ const jeux1Schema = new mongoose.Schema({
         required: true,
         default: 'algo2'
     },
-    image: {
-        type: Array,
-        required: true
-    },
-
     reponse: {
         type: String,
-        required: true,
     },
     question: {
+        type: String,
+        required: true
+
+    },
+    categorie: {
         type: String,
         required: true
 
@@ -34,6 +34,9 @@ const jeux1Schema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    files: {
+        type: Array,
     }
 });
 

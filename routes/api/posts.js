@@ -6,7 +6,7 @@ const User=require('../../models/User');
 const Profile=require('../../models/Profile');
 const Post=require('../../models/Post');
 const { remove } = require('../../models/Post');
-
+ 
 // @route Get api/posts
 // @desc Create a post
 // @access Private
@@ -26,8 +26,8 @@ async(req,res)=>{
     
         const newPost=new Post({
             text:req.body.text,
-            name:user.name,
-            avatar:user.avatar,
+            name:user.firstName+' '+user.lastName,
+            avatar:user.file,
             user:req.user.id
         })
 
@@ -77,6 +77,38 @@ router.get('/:id',auth,async(req,res)=>{
         } 
     } 
 });
+
+// @route DELETE api/posts/:id
+// @desc Delete post
+// @access Private
+router.delete('/admin/:id',auth,async(req,res)=>{
+    try {
+        const post=await Post.findById(req.params.id);
+        if(!post){
+            return res.status(404).json({msg:'Post not found'});
+        }
+
+        const user=await User.findById(req.user.id)
+        
+        //
+        //check on user
+        if(post.user.toString() !== req.user.id &&user.role !="admin"){
+            return res.status(404).json({msg:'utilisateur non autorisé '});
+        }
+        await post.remove();
+        res.json({msg:`Post supprimer`});
+
+       
+    } catch (error) {
+        console.error(error.message);
+        if(error.kind === 'ObjectId'){
+            return res.status(404).json({msg:'post introuvable'});
+        } 
+        res.status(500).send('Server Error')
+        
+    }
+});
+
 
 
 
@@ -187,7 +219,8 @@ router.post('/comment/:id',[
 
         const newComment={
             text:req.body.text,
-            name:user.name,
+            avatar:user.file,
+            name:user.firstName+' '+user.lastName,
             user:req.user.id
         };
 
@@ -204,6 +237,43 @@ router.post('/comment/:id',[
   
 });
 
+// @route Delete api/posts/comment/:id/:comment_id
+// @desc delete a comment
+// @access Private
+router.delete('/admin/:id/:comment_id',auth,async(req,res)=>{
+    
+
+    try{
+        const post=await Post.findById(req.params.id)
+        const user=await User.findById(req.user.id) 
+
+        const comment=post.comment.find(comment=>comment.id===req.params.comment_id)
+
+        if(!comment){
+            return res.status(404).json({msg:"comment n'existe pas"});
+        }
+
+        if(comment.user.toString()!==req.user.id&&user.role!="admin"){
+            return res.status(404).json({msg:"utilisateur non autorisé"})
+        }
+
+
+     //Get the remove index
+     const removeIndex=post.comment.map(comment=>comment.user.toString()).indexOf((req.user.id));
+
+     post.comment.splice(removeIndex,1);
+     
+     await post.save();
+     res.json(post.comment);
+      
+    }catch(err){
+        
+        console.error(err.message);
+        res.status(500).send('Server Error')
+    }
+  
+
+});
 
 
 // @route POST api/posts/comment/:id/:comment_id
